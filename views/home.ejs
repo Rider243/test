@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+
+ 
+<script src = "js/home.js"></script>
+<script src = "socket.io/socket.io.js"></script>
+
+<!-- <script src="//cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.7/all/gauge.min.js"></script> -->
+<script src = "js/gauge.min.js"></script>
+
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+<script src = "js/jquery-3.6.0.min.js"></script>
+
+
+  <!-- <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script> -->
+  <script src = "js/jquery-ui.min.js"></script>
+  
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script> -->
+  
+<script src = "js/FileSaver.min.js"></script>
+  
+  <script src = "js/plotly-latest.min.js"></script>
+
+
+  
+
+
+  
+
+
+<link rel="stylesheet"   href="css/home.css">
+
+  
+<script>
+    var socket = io("10.14.12.72:8080")  
+</script>
+
+<body onclick="
+ 
+ 
+
+
+">
+  
+<!-- 
+    <label>L1-L2</label>
+    <input id="L1_line" disabled="disabled" type="text" />   
+    <script>fn_IOFieldDataShow("L1_line", "L1_line",2)</script> 
+    <br /><br /> 
+
+    <label>L2-L3</label>
+    <input id="L2_line" disabled="disabled" type="text" />   
+    <script>fn_IOFieldDataShow("L2_line", "L2_line",2)</script> 
+    <br /><br /> 
+
+    <label>L3-L1</label>
+    <input id="L3_line" disabled="disabled" type="text" />   
+    <script>fn_IOFieldDataShow("L3_line", "L3_line",2)</script> 
+    <br /><br /> 
+
+    <label>L1 phase</label>
+    <input id="L1_phase" disabled="disabled" type="text" />   
+    <script>fn_IOFieldDataShow("L1_phase", "L1_phase",2)</script> 
+    <br /><br /> 
+
+    <label>L2 phase</label>
+    <input id="L2_phase" disabled="disabled" type="text" />   
+    <script>fn_IOFieldDataShow("L2_phase", "L2_phase",2)</script> 
+    <br /><br /> 
+
+    <label>L3 phase</label>
+    <input id="L3_phase" disabled="disabled" type="text" />   
+    <script>fn_IOFieldDataShow("L3_phase", "L3_phase",2)</script> 
+    <br /><br />  -->
+<div class="home-screen">
+        <div class="container">
+            <div class="row1">
+                <div class="gauges"    >
+                    <canvas id="gauge_L1_lines"></canvas>
+                    <p class="infogauge">Line L1-L2</p>
+                </div>
+                
+                <script>gauge_temp('gauge_L1_lines','L1_line','V');</script>
+    
+    
+                <div class="gauges"    >
+                    <canvas id="gauge_L2_lines"></canvas>
+                    <p class="infogauge">Line L2-L3</p>
+                </div>
+                <script>gauge_temp('gauge_L2_lines','L2_line','V');</script>
+    
+                <div class="gauges"    >
+                    <canvas id="gauge_L3_lines"></canvas>
+                    <p class="infogauge">Line L3-L1</p>
+                </div>
+                <script>gauge_temp('gauge_L3_lines','L3_line','V');</script>
+    
+            </div>
+
+            <div class="row2">
+                <div class="gauges"     >
+                    <canvas id="gauge_L1_phases"></canvas>
+                    <p class="infogauge">Phase L1</p>
+                </div>
+                <script>gauge_temp('gauge_L1_phases','L1_phase','V');</script>
+                <!-- <p>
+                    Điện áp tối đa hôm nay là
+                    <p id="infor1"></p>
+                    <script>fn_IOFieldDataShow('L1_phase', 'infor1', 1)</script>
+                </p> -->
+             
+                    
+                <div class="gauges"    >
+                    <canvas id="gauge_L2_phases"></canvas>
+                    <p class="infogauge">Phase L2</p>
+                </div>
+                <script>gauge_temp('gauge_L2_phases','L2_phase','V');</script>
+    
+                    
+                <div class="gauges"   >
+                    <canvas id="gauge_L3_phases"></canvas>
+                    <p class="infogauge">Phase L3</p>
+                </div>
+                <script>gauge_temp('gauge_L3_phases','L3_phase','V');</script>
+            </div>
+
+            <div class="row3">
+                <div class="gauges"     >
+                    <canvas id="gauge_L1_phases_cr"></canvas>
+                    <p class="infogauge">Current L1</p>
+                </div>
+                <script>gauge_temp('gauge_L1_phases_cr','L1_phase_cr','A');</script>
+                <!-- <p>
+                    Điện áp tối đa hôm nay là
+                    <p id="infor1"></p>
+                    <script>fn_IOFieldDataShow('L1_phase', 'infor1', 1)</script>
+                </p> -->
+             
+                    
+                <div class="gauges"    >
+                    <canvas id="gauge_L2_phases_cr"></canvas>
+                    <p class="infogauge">Current L2</p>
+                </div>
+                <script>gauge_temp('gauge_L2_phases_cr','L2_phase_cr','A');</script>
+    
+                    
+                <div class="gauges"   >
+                    <canvas id="gauge_L3_phases_cr"></canvas>
+                    <p class="infogauge">Current L3</p>
+                </div>
+                <script>gauge_temp('gauge_L3_phases_cr','L3_phase_cr','A');</script>
+            </div>
+
+
+         </div>
+
+
+
+       <div id="Baocao">
+           <!--Date time piker-->
+           <label id="lb_Search_Start">Từ:</label>
+           <input id="dtpk_Search_Start" type="datetime-local">
+           <label id="lb_Search_End">Đến:</label>
+           <input id="dtpk_Search_End" type="datetime-local">
+           <!--Nút tìm kiếm-->
+           <button id="btt_Search" class="btn" onclick="fn_SQL_By_Time();
+           "></i> TÌM KIẾM</button>
+           <script>fn_SQL_By_Time_display()</script>
+
+            <!--Nút Xuất Excel-->
+            <button id="btt_Excel" class="btn" onclick="fn_excel();
+            "></i> BÁO CÁO</button>
+            <script>fn_excel_display()</script>
+       </div>
+      
+      
+
+
+
+             <!--Table display-->
+             <div id = "div_table_info">
+                <table id="table_info" >
+                    <thead>
+                    <tr >
+  
+                        <th >Thời gian</th>
+                
+                        <th >L1-L2</th>
+
+                        <th >L2-L3</th>
+
+                        <th >L3-L1</th>
+
+                        <th >Phase L1-N</th>
+                        
+                        <th >Phase L2-N</th>
+
+                        <th >Phase L3-N</th>
+
+                        <th >Current L1</th>
+                        
+                        <th >Current L2</th>
+
+                        <th >Current L3</th>
+                        
+   
+  
+  
+                    </tr>
+                    </thead>
+                </table>
+              </div>
+
+              <div id="chart_detail" class="chart"></div>
+              <script>Draw_Chart_detail();  </script>
+              </div>
+          
+            
+            
+           
+</div>
+
+   
+
+
+
+     
+
+</body>
+</html>
